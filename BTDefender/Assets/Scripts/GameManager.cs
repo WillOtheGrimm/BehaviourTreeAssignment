@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -25,7 +26,9 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    textMeshPro = scoreText.GetComponent<TextMeshProUGUI>();    
+        Time.timeScale = 1;
+
+        textMeshPro = scoreText.GetComponent<TextMeshProUGUI>();    
     }
 
     // Update is called once per frame
@@ -53,6 +56,7 @@ public class GameManager : MonoBehaviour
 
     public void RestartGame ()
     {
+        Time.timeScale = 1;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 

@@ -34,7 +34,7 @@ namespace NodeCanvas.Tasks.Conditions {
 		//Return whether the condition is success or failure.
 		protected override bool OnCheck() {
 
-
+			//if (playerObject != null) { }
 			if (playerObject.transform.position.y <= agent.transform.position.y + detectionOffset  && playerObject.transform.position.y >= agent.transform.position.y - detectionOffset)
 			{
 				//Debug.Log("detected");

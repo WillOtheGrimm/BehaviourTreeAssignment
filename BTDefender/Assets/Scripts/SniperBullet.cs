@@ -54,7 +54,7 @@ public class SniperBullet : MonoBehaviour
 
         Destroy(gameObject);
 
-        Debug.Log(playerScript.playerHealth);
+        Debug.Log("Health is: " + playerScript.playerHealth);
 
 
 

@@ -20,7 +20,7 @@ namespace NodeCanvas.Tasks.Conditions {
         //Return null if init was successfull. Return an error string otherwise
         protected override string OnInit(){
 
-            Debug.Log("it happened");
+            //Debug.Log("it happened");
             currentTarget.value = patrolPointsLocation.value[0];
 
             return null;

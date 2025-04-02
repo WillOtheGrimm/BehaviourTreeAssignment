@@ -66,7 +66,7 @@ namespace NodeCanvas.Tasks.Actions {
                 if (otherColliders[i] != boxCollider2D && !otherColliders[i].CompareTag("Bullet"))
                 {
                     Object.Destroy(agent.gameObject);
-                    if (otherColliders[i].CompareTag("Enemy"))
+                    if ((otherColliders[i].CompareTag("Enemy") || otherColliders[i].CompareTag("PlayerBullet")))
                     {
                         GameManager.score++;
                         Object.Destroy(otherColliders[i].gameObject);

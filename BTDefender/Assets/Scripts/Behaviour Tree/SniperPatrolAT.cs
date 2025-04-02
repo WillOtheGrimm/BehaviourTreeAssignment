@@ -33,6 +33,9 @@ namespace NodeCanvas.Tasks.Actions {
 		protected override void OnExecute() {
 
 
+
+
+
             Vector3 directionToMove = currentTarget.value.position - agent.transform.position;
             agent.transform.position += directionToMove.normalized * speed * Time.deltaTime;
 
@@ -44,7 +47,7 @@ namespace NodeCanvas.Tasks.Actions {
 				if (otherColliders[i] != boxCollider2D && !otherColliders[i].CompareTag("Bullet") ) 
 				{
                     Object.Destroy(agent.gameObject);
-                    if (otherColliders[i].CompareTag("Enemy"))
+                    if ((otherColliders[i].CompareTag("Enemy") || otherColliders[i].CompareTag("PlayerBullet")))
                     {
                         GameManager.score++;
                         Object.Destroy(otherColliders[i].gameObject);

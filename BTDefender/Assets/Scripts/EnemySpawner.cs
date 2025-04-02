@@ -15,6 +15,10 @@ public class EnemySpawner : MonoBehaviour
     float elapsedTime;
     float randomizedTime = 2;
 
+
+    public GameObject playerObject;
+
+
     // public Transform[] sniperPatrolPoints;
     public List<Transform> sniperPatrolPoints = new List<Transform>();
     public List<Transform> dasherPatrolPoints = new List<Transform>();
@@ -31,6 +35,8 @@ public class EnemySpawner : MonoBehaviour
     void Update()
     {
 
+        if (playerObject != null)
+        {
 
 
         elapsedTime += Time.deltaTime;
@@ -55,12 +61,13 @@ public class EnemySpawner : MonoBehaviour
             }
 
             elapsedTime = 0;
-            randomizedTime = Random.Range(1, 6);
+            randomizedTime = Random.Range(1, 4);
 
         }
 
 
 
+        }
 
 
 
