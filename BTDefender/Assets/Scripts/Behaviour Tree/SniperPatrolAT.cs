@@ -13,8 +13,9 @@ namespace NodeCanvas.Tasks.Actions {
 
 
 
-
+		//List of the patrol points
         public BBParameter<List<Transform>> patrolPointsLocation;
+		//To get the reference to the object collider (to check what its colliding with)
 		private BoxCollider2D boxCollider2D;
 
 
@@ -22,8 +23,14 @@ namespace NodeCanvas.Tasks.Actions {
         //Return null if init was successfull. Return an error string otherwise
         protected override string OnInit() {
 			//Debug.Log("it happened");
+
+			//Set the current target to be the first object in the waypoints list
             currentTarget.value = patrolPointsLocation.value[0];
+
+
+			//Get the reference to the collider component 
 			boxCollider2D = agent.GetComponent<BoxCollider2D>();
+			
 			return null;
 		}
 
@@ -35,18 +42,26 @@ namespace NodeCanvas.Tasks.Actions {
 
 
 
-
+			//To know the direction the next point is
             Vector3 directionToMove = currentTarget.value.position - agent.transform.position;
+
+
+			//To move in the direction of the intended point at set speed
             agent.transform.position += directionToMove.normalized * speed * Time.deltaTime;
 
 
+			//Make a list of the collider 2d around it
 			Collider2D[] otherColliders = Physics2D.OverlapBoxAll(agent.transform.position, boxCollider2D.size, agent.transform.rotation.z);
 
+
+			//cycles through all the colliders that the list created
 			for (int i = 0; i < otherColliders.Length; i++)
 			{
+				//if the collider isnt one of its bullet and isnt his own collider than destroy
 				if (otherColliders[i] != boxCollider2D && !otherColliders[i].CompareTag("Bullet") ) 
 				{
                     Object.Destroy(agent.gameObject);
+					//update score if they collide with each other or the player shot them. Will still destroy the object on impact
                     if ((otherColliders[i].CompareTag("Enemy") || otherColliders[i].CompareTag("PlayerBullet")))
                     {
                         GameManager.score++;

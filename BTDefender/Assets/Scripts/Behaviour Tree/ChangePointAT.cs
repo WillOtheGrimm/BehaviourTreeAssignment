@@ -7,12 +7,16 @@ namespace NodeCanvas.Tasks.Actions {
 
 	public class ChangePointAT : ActionTask {
 
+
+
+		//To go toward next point
 		public BBParameter<Transform> currentTarget;
-        //public Transform[] patrolPoints;
 
-
+		//To get the list from the spawner
 		public BBParameter<List<Transform>> patrolPointsLocation;
 
+
+		//to change the next target in the list
         private int currentPatrolPointIndex = 0;
 
 
@@ -29,12 +33,12 @@ namespace NodeCanvas.Tasks.Actions {
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
 
-
+			//when ran, make sure it changes the point to the next value
             currentPatrolPointIndex++;
 
 			
 
-
+			//make sure it resets to 0 when reached last point
             if (currentPatrolPointIndex >= patrolPointsLocation.value.Count)
             {
                 currentPatrolPointIndex = 0;
@@ -43,7 +47,7 @@ namespace NodeCanvas.Tasks.Actions {
             }
 
 
-
+			//set the blackboard value current target (which other uses) to the current index
             currentTarget.value = patrolPointsLocation.value[currentPatrolPointIndex];
 
 

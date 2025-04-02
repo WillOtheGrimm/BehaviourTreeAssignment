@@ -7,14 +7,17 @@ namespace NodeCanvas.Tasks.Conditions {
 
 	public class DetectPlayerCT : ConditionTask {
 
-
+		//For player object
         GameObject playerObject;
+
+		//to  set the detection offset
 		public float detectionOffset;
 
 
         //Use for initialization. This is called only once in the lifetime of the task.
         //Return null if init was successfull. Return an error string otherwise
         protected override string OnInit(){
+			//Find player object from their tag
             playerObject = GameObject.FindGameObjectWithTag("Player");
 
             return null;
@@ -34,7 +37,8 @@ namespace NodeCanvas.Tasks.Conditions {
 		//Return whether the condition is success or failure.
 		protected override bool OnCheck() {
 
-			//if (playerObject != null) { }
+
+			//moves on to next behaviour if the lpayer is within the scanning range
 			if (playerObject.transform.position.y <= agent.transform.position.y + detectionOffset  && playerObject.transform.position.y >= agent.transform.position.y - detectionOffset)
 			{
 				//Debug.Log("detected");

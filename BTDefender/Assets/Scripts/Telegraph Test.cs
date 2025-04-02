@@ -6,6 +6,15 @@ using UnityEngine.UIElements;
 public class TelegraphTest : MonoBehaviour
 {
 
+
+
+    //This is my testing script please dont pay attention to it.
+
+
+
+
+
+
     public Color color1;
     public Color color2;
 

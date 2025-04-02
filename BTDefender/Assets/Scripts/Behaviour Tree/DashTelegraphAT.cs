@@ -10,22 +10,25 @@ namespace NodeCanvas.Tasks.Actions {
 
 
 
-
+		//Colors for the dash telegraph
 		public Color baseColor;
 		public Color allarmedColor;
-
+		//Spriterender reference
 		SpriteRenderer spriteRenderer;
 
+
+		//How long its going to telegraph for
 		public float blinkTimer;
-		//float elapsedTime;
 
-
+		//to get out of while loop
 		bool isTelegraphing = false;
 
 
 		//Use for initialization. This is called only once in the lifetime of the task.
 		//Return null if init was successfull. Return an error string otherwise
 		protected override string OnInit() {
+
+			//to get the component 
 			spriteRenderer = agent.GetComponent<SpriteRenderer>();
 
 
@@ -36,7 +39,6 @@ namespace NodeCanvas.Tasks.Actions {
 		//Call EndAction() to mark the action as finished, either in success or failure.
 		//EndAction can be called from anywhere.
 		protected override void OnExecute() {
-			//elapsedTime = blinkTimer;
 
 
 			StartCoroutine(TeleGraph());
@@ -61,12 +63,11 @@ namespace NodeCanvas.Tasks.Actions {
 		}
 
 
-
+		//Co routine to change between the 2 colors really fast (change the 0.1f to change color rate)
         IEnumerator ColorChange()
 
         {
-
-
+		//if telegraphing trigger the color changes repeatively	
             while (isTelegraphing)
             {
 
@@ -82,9 +83,12 @@ namespace NodeCanvas.Tasks.Actions {
 
         IEnumerator TeleGraph()
         {
+			//When called set to true to trigger color change
 			isTelegraphing = true;
             StartCoroutine(ColorChange());
+			//make sure its blinks for the desired time
             yield return new WaitForSeconds(blinkTimer);
+			//end blink and move on (dash)
 			isTelegraphing = false;
             EndAction(true);
 
