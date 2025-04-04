@@ -68,6 +68,10 @@ namespace NodeCanvas.Tasks.Actions {
 
         {
 		//if telegraphing trigger the color changes repeatively	
+
+			if (spriteRenderer != null)
+			{
+
             while (isTelegraphing)
             {
 
@@ -78,6 +82,7 @@ namespace NodeCanvas.Tasks.Actions {
 
             }
 
+			}
 
         }
 

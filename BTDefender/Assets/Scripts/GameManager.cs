@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
     {
         // to restart the game time when the game is loaded (i set it to 0 later)
         Time.timeScale = 1;
-        
+        score = 0;
         //Gets reference to component
         textMeshPro = scoreText.GetComponent<TextMeshProUGUI>();    
     }
